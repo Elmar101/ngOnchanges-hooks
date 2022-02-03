@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-list-app';
+  value: number = 0;
+  getRandomInt() {
+    this.value =  Math.floor(Math.random() * 10);
+  }
+
 }
