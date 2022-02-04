@@ -6,7 +6,7 @@ import { NgViewChildComponent } from './components/ng-view-child/ng-view-child.c
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+/* export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(NgViewChildComponent, {static: true}) viewChild!: NgViewChildComponent;
   title = 'todo-list-app';
   value: number = 0;
@@ -21,4 +21,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit x is : ", this.viewChild.x);
   }
+} */
+
+
+export class AppComponent {
+ 
 }
