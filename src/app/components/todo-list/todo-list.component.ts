@@ -7,18 +7,18 @@ import { Model } from 'src/app/models/static-data/models';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent  {
-
+  inputText: string = "";
   displayAll: boolean = false;
-  isSelectAll: boolean = false;
   constructor() { }
 
   model = new Model();
 
   message: string = "merhaba";
 
-  addItem(value: string) {
-    if(value!="") {
-      this.model.items.push({ description: value, action: false});
+  addItem() {
+    if(this.inputText!="") {
+      this.model.items.push({ description: this.inputText, action: false});
+      this.inputText = ""
     } else {
       alert("bilgi giriniz");
     }
@@ -29,7 +29,7 @@ export class TodoListComponent  {
   }
 
   getItems() {
-    if(this.displayAll ) {
+    if(this.displayAll) {
       return this.model.items;
     }
     return this.model.items.filter(item => !item.action);
@@ -38,6 +38,4 @@ export class TodoListComponent  {
   displayCount() {
     return this.model.items.filter(i=>i.action).length;
   }
-
-
 }
