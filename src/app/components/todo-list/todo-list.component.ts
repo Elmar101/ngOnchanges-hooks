@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Model } from 'src/app/models/static-data/models';
+import { TodoItem } from '../../models/entity/todo-list';
 
 @Component({
   selector: 'todo-list',
@@ -9,19 +10,48 @@ import { Model } from 'src/app/models/static-data/models';
 export class TodoListComponent  {
   inputText: string = "";
   displayAll: boolean = false;
-  constructor() { }
+  constructor() { 
+    this.model.items = this.getItemsFromLocalStorage();
+  }
 
   model = new Model();
 
   message: string = "merhaba";
 
+  getItemsFromLocalStorage(): TodoItem[] {
+    let items: TodoItem[] = [] ;
+    let value = localStorage.getItem('items');
+    if(value !== null ){
+      items = JSON.parse(value);
+    }
+    return items;
+  }
   addItem() {
     if(this.inputText!="") {
-      this.model.items.push({ description: this.inputText, action: false});
+      let data: TodoItem = { description: this.inputText, action: false};
+      this.model.items.push(data);
+
+      let items: TodoItem[] = this.getItemsFromLocalStorage();
+          items.push(data);
+          localStorage.setItem('items',JSON.stringify(items));
+
       this.inputText = ""
+
     } else {
       alert("bilgi giriniz");
     }
+  }
+
+  onActionChange(item: TodoItem){
+    console.table(item)
+    let items = this.getItemsFromLocalStorage();
+    //localStorage.clear();
+    items.map( i => {
+      if(i.description == item.description){
+        i.action = item.action;
+      }
+    })
+    localStorage.setItem('items',JSON.stringify(items));
   }
 
   getName() {
