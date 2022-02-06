@@ -16,16 +16,19 @@ export class TodoListComponent  {
 
   model = new Model();
 
-  message: string = "merhaba";
+  message: string = "Salam";
 
   getItemsFromLocalStorage(): TodoItem[] {
     let items: TodoItem[] = [] ;
+
     let value = localStorage.getItem('items');
+
     if(value !== null ){
       items = JSON.parse(value);
     }
     return items;
   }
+
   addItem() {
     if(this.inputText!="") {
       let data: TodoItem = { description: this.inputText, action: false};
@@ -43,7 +46,7 @@ export class TodoListComponent  {
   }
 
   onActionChange(item: TodoItem){
-    console.table(item)
+    console.log("action is ",item.action)
     let items = this.getItemsFromLocalStorage();
     //localStorage.clear();
     items.map( i => {
@@ -58,7 +61,7 @@ export class TodoListComponent  {
     return this.model.name;
   }
 
-  getItems() {
+  getItems(): TodoItem[] {
     if(this.displayAll) {
       return this.model.items;
     }

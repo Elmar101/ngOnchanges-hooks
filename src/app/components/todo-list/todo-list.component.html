@@ -44,14 +44,33 @@
                 <td>{{ i+1 }}</td>
                 <td>{{ item.description }}</td>
                 <td>
-  
-                  <!-- if bloğu -->
-                  <!--
+                     <!-- if bloğu -->
                     <div *ngIf="item.action">Yes</div>
                     <div *ngIf="!item.action">No</div>
-                  -->
+                </td>
+                <td>
+                  <input 
+                    type="checkbox" 
+                    [(ngModel)]="item.action"
+                    (change)="onActionChange(item)"
+                >
+                </td>
+              </tr>
+            </tbody>
+          </table>
   
-                  <!-- <div [ngSwitch]="item.action">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  
+ <!-- <div [ngSwitch]="item.action">
                     <div *ngSwitchCase="true">Yes</div>
                     <div *ngSwitchDefault>No</div>
                   </div> -->
@@ -77,7 +96,7 @@
                   </ng-template> -->
   
                   <!-- if-then-else bloğu  -->
-  
+                  <!--
                   <div *ngIf="item.action; then yesTemplate else noTemplate">
                     Burası gösterilmez.
                   </div>
@@ -89,24 +108,5 @@
                   <ng-template #yesTemplate>
                     Yes
                   </ng-template>
-  
-  
-                </td>
-                <td>
-                  <input 
-                    type="checkbox" 
-                    [(ngModel)]="item.action"
-                    (change)="onActionChange(item)"
-                >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-  
-        </ng-template>
-  
-  
-      </div>
-    </div>
-  </div>
+                -->
   
